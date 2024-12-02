@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import generateReactAppFiles from '../../generateReactAppFiles';
 import LoginForm from '../LoginForm/LoginForm';
+import generateReactAppFiles from '../../generateReactAppFiles';
+import { appContext } from '../../App';
 
-const ExportButton = () => {
-  const exportAsZip = async () => {
+const ExportButton = ({layout}) => {
+  const context = useContext(appContext);
+  
+  const exportAsZip = () => {
+    console.log("kjjjjjjjjjjjjjjjoooo",context);
     const zip = new JSZip();
-    const files = await generateReactAppFiles();
-    console.log("files",files,JSON.stringify(LoginForm));
-    
+    const files=  generateReactAppFiles(context);
 
     // Add files to the zip
     for (const [path, content] of Object.entries(files)) {

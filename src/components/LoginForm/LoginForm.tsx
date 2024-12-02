@@ -5,7 +5,7 @@ const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log('Username:', username);
     console.log('Password:', password);

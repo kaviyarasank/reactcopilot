@@ -1,0 +1,129 @@
+
+
+  .react-grid-item > .react-resizable-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+  }
+  
+  .react-grid-item > .react-resizable-handle::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .dragInput{
+    width: inherit !important;
+    height: inherit !important;
+  }
+.dragInput:focus{
+    outline: none;
+}
+
+
+  .react-grid-layout {
+    position: relative;
+    transition: height 200ms ease;
+  }
+  .react-grid-item {
+    transition: all 200ms ease;
+    transition-property: left, top;
+  }
+  .react-grid-item.cssTransforms {
+    transition-property: transform;
+  }
+  .react-grid-item.resizing {
+    z-index: 1;
+    will-change: width, height;
+  }
+  
+  .react-grid-item.react-draggable-dragging {
+    transition: none;
+    z-index: 3;
+    will-change: transform;
+  }
+  .gridDIv{
+    z-index: 1 !important;
+  }
+  .dragCardDiv{
+    border: 1px solid #bfbfbf;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .deleteSvgImg{
+    /* position: absolute; */
+    /* right: 0; */
+    cursor: pointer;
+  }
+  .dragInputText{
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+  }
+  .dragInputText:focus{
+    outline: none;
+  }
+  .fontstyleDiv1 p{
+    padding: 5px 15px;
+    border: 1px solid #b7b7b7;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .fontstyleActive{
+    background: #0086c9;
+    color: #fff;
+  }
+  .fontsizeInput{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    padding: 5px;
+    background: #fff;
+  }
+  .fontsizeInput:focus{
+    outline: none;
+  }
+  .fontfamilySelect{
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+
+  }
+  .backBtn{
+    /* height: 35px; */
+    /* width: 35px; */
+    border-radius: 4px;
+    font-size: 14px;
+    background: #0086c9;
+    color: #fff;
+    padding: 5px 10px;
+  }
+  .fontstyleHead{
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0px !important;
+  }
+  .dragInputImg{
+    height: 100%;
+    width: 100%;
+  }
+  .previewForm .react-resizable-handle{
+    display: none !important;
+  }
+  .resize-none{
+    resize: none;
+  }
+  .noteText{
+    font-size: 12px;
+  }
