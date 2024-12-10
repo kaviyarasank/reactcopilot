@@ -1,7 +1,6 @@
 const generateReactAppFiles = (props: any) => {
   const layout = JSON.stringify(props?.layout);
 
-  // Generate static JSX code for each chart in the layout
   const chartComponents = props.layout
     ?.map((item: any) => {
       return `
@@ -12,14 +11,7 @@ const generateReactAppFiles = (props: any) => {
         >
           <Chart
             chartType="${item.type}"
-            data={[
-              ["Task", "Hours per Day"],
-              ["Work", 9],
-              ["Eat", 2],
-              ["Commute", 2],
-              ["Watch TV", 2],
-              ["Sleep", 7],
-            ]}
+            data={getGraphData(${JSON.stringify(item.props)})}
             options={{
               title: "My Daily Activities",
             }}
@@ -30,12 +22,24 @@ const generateReactAppFiles = (props: any) => {
     })
     .join("");
 
-  // Store the UserPreview component code as a string with static JSX
   const userPreviewCode = `
 import React from "react";
 import Chart from "react-google-charts";
 import RGL, { WidthProvider } from "react-grid-layout";
 const ReactGridLayout = WidthProvider(RGL);
+
+const getGraphData = (item) =>{
+
+let temp = [
+              ["Task", "Hours per Day"],
+              ["Work", 9],
+              ["Eat", 2],
+              ["Commute", 2],
+              ["Watch TV", 2],
+              ["Sleep", 7],
+            ]
+  return temp;
+}
 
 const UserPreview = () => {
   return (
@@ -57,7 +61,6 @@ const UserPreview = () => {
 export default UserPreview;
 `;
 
-  // Store the UserPreview.css code as a string
   const userPreviewCSS = ` `;
 
   return {

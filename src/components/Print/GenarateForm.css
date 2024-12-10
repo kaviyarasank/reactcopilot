@@ -1,129 +1,911 @@
-
-
-  .react-grid-item > .react-resizable-handle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    bottom: 0;
-    right: 0;
-    cursor: se-resize;
-  }
-  
-  .react-grid-item > .react-resizable-handle::after {
-    content: "";
-    position: absolute;
-    right: 3px;
-    bottom: 3px;
-    width: 5px;
-    height: 5px;
-    border-right: 2px solid rgba(0, 0, 0, 0.4);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
-  }
-
-  .dragInput{
-    width: inherit !important;
-    height: inherit !important;
-  }
-.dragInput:focus{
-    outline: none;
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
 }
 
+.react-grid-item > .react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
 
-  .react-grid-layout {
-    position: relative;
-    transition: height 200ms ease;
-  }
-  .react-grid-item {
-    transition: all 200ms ease;
-    transition-property: left, top;
-  }
-  .react-grid-item.cssTransforms {
-    transition-property: transform;
-  }
-  .react-grid-item.resizing {
-    z-index: 1;
-    will-change: width, height;
-  }
-  
-  .react-grid-item.react-draggable-dragging {
-    transition: none;
-    z-index: 3;
-    will-change: transform;
-  }
-  .gridDIv{
-    z-index: 1 !important;
-  }
-  .dragCardDiv{
-    border: 1px solid #bfbfbf;
-    padding: 5px;
-    border-radius: 8px;
-    text-align: center;
-  }
-  .deleteSvgImg{
-    /* position: absolute; */
-    /* right: 0; */
-    cursor: pointer;
-  }
-  .dragInputText{
-    height: 100%;
-    width: 100%;
-    border-radius: 8px;
-  }
-  .dragInputText:focus{
-    outline: none;
-  }
-  .fontstyleDiv1 p{
-    padding: 5px 15px;
-    border: 1px solid #b7b7b7;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  .fontstyleActive{
-    background: #0086c9;
-    color: #fff;
-  }
-  .fontsizeInput{
-    width: 100%;
-    height: 40px;
-    border: 1px solid #bfbfbf;
-    border-radius: 4px;
-    padding: 5px;
-    background: #fff;
-  }
-  .fontsizeInput:focus{
-    outline: none;
-  }
-  .fontfamilySelect{
-    width: 100%;
-    height: 40px;
-    font-size: 14px;
+.dragInput {
+  width: 100% !important;
+  height: inherit !important;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 10px;
+}
 
-  }
-  .backBtn{
-    /* height: 35px; */
-    /* width: 35px; */
-    border-radius: 4px;
-    font-size: 14px;
-    background: #0086c9;
-    color: #fff;
-    padding: 5px 10px;
-  }
-  .fontstyleHead{
-    font-size: 16px;
-    font-weight: 600;
-    color: black;
-    margin-bottom: 0px !important;
-  }
-  .dragInputImg{
+.dragInput input {
+  height: 15px;
+}
+
+.dragInput:focus {
+  outline: none;
+}
+
+.react-grid-layout {
+  position: relative;
+  transition: height 200ms ease;
+}
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+  /* margin-top: 25px !important; */
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: transform;
+}
+
+.react-grid-item.resizing {
+  z-index: 1;
+  will-change: width, height;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 3;
+  will-change: transform;
+}
+
+.options-box {
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 81, 255, 0.5);
+  background: #fff;
+  text-align: center;
+}
+
+.options-box:hover {
+  background-color: #F0F6FF;
+}
+
+.options-box label {
+  font-size: 12px;
+  margin-top: 8px;
+  color: #23262f;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+}
+
+.options-box .images {
+  height: 25px;
+  width: 25px;
+  object-fit: contain;
+}
+
+@media screen and (min-width: 1600px) {
+  .options-box {
+    /* height: 110px; */
+    height: 80%;
+    aspect-ratio: 1 / 1;
     height: 100%;
+  }
+
+  .options-box label {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .options-box .images {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .options-box {
+    height: 75px;
+  }
+}
+
+@media screen and (min-width: 1439px) {
+  .options-box {
+    height: 60%;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+  }
+}
+
+@media screen and (min-width: 2200px) {
+
+  /* .options-box {
+    height: 140px;
+  } */
+  .options-box label {
+    font-size: 22px;
+    margin-top: 10px;
+  }
+
+  .options-box .images {
+    height: 35px;
+    width: 35px;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .options-box {
     width: 100%;
+    height: 80px;
   }
-  .previewForm .react-resizable-handle{
-    display: none !important;
+}
+
+.sectionName {
+  height: 45px;
+  /* width: 100%; */
+  /* border-radius: 20px 20px 0px 0px; */
+  border: none;
+  padding-left: 10px;
+  color: #101828;
+  font-weight: 600;
+  font-style: normal;
+  /* border-bottom: 1px solid #dbdbdb; */
+}
+
+.sectionName:focus {
+  border: none;
+  outline: none;
+}
+
+.GenerateForm .formTitle {
+  display: flex;
+  padding: 17px 0px 17px 17px;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.GenerateForm .formHead {
+  color: #101828;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.GenerateForm .controlSettings {
+  height: 60px;
+  width: -webkit-fill-available;
+  margin-top: auto;
+  display: block;
+  margin-bottom: auto;
+  text-align: center;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.GenerateForm .controlSettingsActive {
+  background: #f0f6ff;
+  height: 60px;
+  width: -webkit-fill-available;
+  margin-top: auto;
+  display: block;
+  margin-bottom: auto;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.GenerateForm .controlLabelActive {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.GenerateForm .controlLabel {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #878c99;
+}
+
+.GenerateForm .controlIcons {
+  height: 25px;
+  width: 25px;
+}
+
+.GenerateForm .controlsFromLabel {
+  color: #878c99;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* CreateRender */
+
+.createrenderInput {
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #878c99;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.createrenderInput .MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root>div:focus {
+  outline: none !important;
+}
+
+.userSvg {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+}
+
+.pl-15 {
+  padding-left: 25px !important;
+}
+
+/* DynamicTable.css */
+.dynamic-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.dynamic-table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.dynamic-table input {
+  width: 100%;
+  outline: none;
+}
+
+.sub-btn {
+  font-size: 14px;
+  padding: 5px 10px 5px 10px;
+  border: none;
+  background: #0a83ff;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+.input {
+  height: 50px;
+  border: none !important;
+  padding: 5px 10px !important;
+  border-radius: 8px;
+  background: #f5f5f5;
+  font-size: 16px;
+  color: #23262f;
+}
+
+.inputUser {
+  height: 50px;
+  /* border: none !important; */
+  border-radius: 8px !important;
+  background: #f5f5f5;
+  font-size: 16px;
+  color: #23262f;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.custom-tabs-btn {
+  height: 45px;
+}
+
+.left-tab {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.right-tab {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.inActiveTabs {
+  background: none;
+  font-size: 14px;
+  color: #878c99;
+  font-weight: 600;
+}
+
+.inActiveTabs:hover {
+  background: #F0F6FF;
+}
+
+.activeTabs {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 600;
+  background: #f0f6ff;
+}
+
+.tabs-pad {
+  padding: 10px 20px 0px 20px;
+}
+
+.searchInput {
+  height: 45px;
+  border-radius: 24px;
+  border: 1px solid #cfd3d4;
+  padding-left: 40px;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 15px;
+  top: 13px;
+}
+
+.fieldsText {
+  font-size: 16px;
+  color: #101828;
+  font-weight: 600;
+}
+
+.contorls {
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.layout-label {
+  position: absolute;
+  top: -25px;
+}
+
+.gridDIv {
+  margin-top: 20px;
+}
+
+.grid-item {
+  margin-top: 20px;
+  /* Adjust this value to control the amount of space between rows */
+  /* Other styles for your grid items */
+}
+
+.requiredStar {
+  color: red;
+}
+
+.full-height {
+  height: calc(100% - 38px);
+}
+
+.Permission .full-height {
+  height: auto;
+}
+
+.full-height>div {
+  height: 100%;
+}
+
+.full-height .MuiInputBase-fullWidth {
+  border-radius: 8px !important;
+}
+
+.full-height>div>textarea {
+  height: 100% !important;
+  border-radius: 8px;
+  background: #f5f5f5;
+  border: none;
+  padding: 10px;
+}
+
+.full-height>div>textarea:focus {
+  outline: none;
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root {
+  height: 100%;
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root>div {
+  height: 100%;
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root>div>div {
+  height: 100%;
+}
+
+.full-height>div>div {
+  height: 100%;
+}
+
+/* src/App.css */
+
+.section {
+  background-color: white;
+  /* border: 1px solid #ccc; */
+  margin-bottom: 20px;
+  min-height: 200px;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.dataFormInputLabel {
+  color: #878c99;
+  font-size: 12px;
+  font-weight: 400;
+  /* height: 30px; */
+  overflow: hidden;
+  display: inline-block !important;
+}
+
+.helptxtForm {
+  color: #878c99;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.remove-button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 2px 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.resize-grid-bg {
+  /* background: #f8f8f8; */
+  cursor: move;
+  z-index: 11;
+  border-radius: 8px;
+  padding: 5px 10px !important;
+}
+
+.borderActiveDate {
+  border: 0.5px solid var(--blue) !important;
+  margin-top: -5px !important;
+  border-radius: 8px;
+}
+
+/* render form */
+.muiButton {
+  width: 100%;
+  background: #f5f5f5;
+  overflow: hidden !important;
+}
+
+.muiButtonDate {
+  border-radius: 8px !important;
+  margin-top: -5px !important;
+}
+
+.attachment {
+  height: 40px;
+  border-radius: 20px;
+  border: 1.5px solid var(--blue);
+}
+
+.attachment p {
+  color: var(--blue);
+  font-size: 14px;
+}
+
+.footerButtons_dataform {
+  background: #fff;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  right: 0px;
+  left: 0px;
+  z-index: 99;
+}
+
+.footerButtons_dataform .deployBtn {
+  border-radius: 8px;
+  background: var(--button-bg-color, var(--blue));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  width: 150px;
+  text-align: center;
+  height: 45px;
+}
+
+.footerButtons_dataform .Preview {
+  border-radius: 8px;
+  border: 1px solid var(--button-bg-color) !important;
+  font-size: 14px;
+  font-weight: 700;
+  width: 150px;
+  border: 1px solid #ccd1d9;
+  background: #fff;
+  box-shadow: 0px 10px 32px 0px rgba(31, 47, 70, 0.12);
+  text-align: center;
+  height: 45px;
+  color: var(--button-bg-color);
+}
+
+.react-resizable-handle-e,
+.react-resizable-handle-w,
+.react-resizable-handle-s,
+.react-resizable-handle-n {
+  opacity: 0;
+}
+
+.resizeIconsRight {
+  position: absolute;
+  right: -10px;
+  top: 45%;
+  z-index: 111;
+}
+
+.resizeIconsLeft {
+  position: absolute;
+  left: -10px;
+  top: 45%;
+  z-index: 111;
+}
+
+.resizeIconsTop {
+  position: absolute;
+  top: -10px;
+  left: 49%;
+  z-index: 111;
+}
+
+.resizeIconsBottom {
+  position: absolute;
+  bottom: -10px;
+  left: 49%;
+  z-index: 111;
+}
+
+.controlsnavigateBox {
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  border-radius: 5px;
+  border: 1px solid #d4d4d4;
+  background: #f0f6ff;
+  cursor: pointer;
+  /* z-index: 9999 !important; */
+}
+
+.paddingRight0 {
+  padding-right: 0px !important;
+}
+
+.paddingLeft10 {
+  padding-left: 9px !important;
+  padding-right: 3px !important;
+}
+
+.addbuttonImg {
+  margin-left: auto;
+  display: block;
+  position: relative;
+  bottom: 40px;
+  right: 10px;
+  z-index: 99 !important;
+}
+
+.dataForm-startRating {
+  width: 100%;
+  /* overflow: hidden; */
+}
+
+.containerSection {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.containerSection::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* Track */
+.containerSection::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.containerSection::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+
+/* Handle on hover */
+.containerSection::-webkit-scrollbar-thumb:hover {
+  background: #747474;
+}
+
+.sample_dropbox_div {
+  border-radius: 8px;
+  border: 1px dashed #ccd1d9;
+  background: #fff;
+  padding: 15px;
+
+  color: #878c99;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sigCanvas {
+  border: 1px solid #c5c5c5;
+  /* width: 100% !important; */
+  /* height: 110px !important; */
+  border-radius: 8px;
+  background: white;
+  margin-right: 4px;
+}
+
+.signatureAddImg {
+  background: var(--blue);
+  height: 30px;
+  font-size: 12px;
+  width: 45%;
+  /* padding: 15px 15px 0px 15px; */
+  margin: auto;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  border: none;
+}
+
+.sliderInitalvalue {
+  font-size: 12px;
+  margin-top: 15px;
+  color: #878C99;
+}
+
+.dangerSvg {
+  position: absolute;
+  right: 25px;
+  top: 5px;
+}
+
+.addAttachmenttext {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.errorBorder {
+  border: 0.5px solid red !important;
+}
+
+.upload-image-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: lightblue !important;
+}
+
+.helpText_postion {
+  position: relative;
+  bottom: 5px;
+}
+
+.helpText_postion_slider {
+  position: relative;
+  bottom: 12px;
+}
+
+.sectionControlsGap {
+  gap: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+  .sectionControlsGap {
+    gap: 20px;
   }
-  .resize-none{
-    resize: none;
-  }
-  .noteText{
-    font-size: 12px;
-  }
+}
+
+.comming_soon_text {
+  color: #626262;
+  font-size: 18px;
+}
+
+.ComingsoonImg {
+  height: 80px;
+  width: 150px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+
+.multiSelectAutoGenerateForm {
+  /* height: fit-content !important; */
+  background: #f5f5f5 !important;
+  height: 50px !important;
+  margin-top: -5px !important;
+  overflow: auto;
+}
+
+.MuiAutocomplete-input::after {
+  border-bottom: none !important;
+}
+
+.buttonField {
+  padding: 10px !important;
+  background: var(--blue) !important;
+  border-radius: 8px !important;
+  width: 100%;
+  color: var(--white) !important;
+  text-transform: none !important;
+}
+
+.buttonFieldLink {
+  position: relative;
+  top: 2rem;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.GenerateForm .controlSettings:hover {
+  background: #f0f6ff;
+  height: 60px;
+  border-radius: 4px;
+}
+
+.attachmentFileName {
+  font-size: 12px;
+}
+
+.dot {
+  background-image: radial-gradient(circle, grey 0.1px, transparent 1px) !important;
+  background-size: 7px 7px !important;
+  /* Adjust dot size as needed */
+}
+
+.checkbox_FieldDiv .MuiFormControlLabel-label {
+  font-size: 14px;
+  color: #23262F;
+  font-weight: 600;
+}
+
+.renderDate input {
+  color: #878C99;
+  font-size: 14px;
+}
+
+.label-render {
+  font-size: 24px !important;
+  color: var(--textBack) !important;
+}
+
+.toggleError {
+  position: relative;
+  bottom: 5px;
+}
+
+.barcoderender {
+  margin-top: -20px;
+}
+
+.signatureWrtingPad {
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.signatureWrtingPad span {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  /* margin-top: 45px; */
+}
+
+.orSpanText {
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.barcodeError {
+  color: var(--danger);
+  font-size: 16px;
+  text-align: center;
+  margin: revert;
+}
+
+.lookupMutliselect_svg {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  height: 20px;
+  width: 20px;
+  z-index: 1;
+}
+
+.lookupMutliselect {
+  /* border: 1px solid grey; */
+  border-radius: 8px;
+  height: 50px;
+  margin-top: -3px;
+  background: #f5f5f5;
+}
+
+.lookupMutliselect .MuiAutocomplete-popupIndicator {
+  display: none !important;
+}
+
+.lookupMutliselect .MuiAutocomplete-clearIndicator {
+  margin-top: 15px !important;
+  margin-right: 25px !important;
+  display: none !important;
+}
+
+#simple-popover {
+  position: absolute !important;
+  z-index: 1;
+}
+
+.locationTypeLabel {
+  color: #141414;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.locationTypeDesc {
+  color: #878C99;
+  font-size: 12px;
+}
+
+.goooglemapdiv {
+  background: #FFFDF0;
+  border: 1px solid #F8D478;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.googlemapKeyDesc {
+  color: #878C99;
+  font-size: 14px;
+}
+
+.AddGoogleMapsAPIKeyhere {
+  color: #1F51FF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.configureBarcode {
+  height: 120px;
+  width: 200px;
+}
+
+.data-form-controles {
+  padding: 3px 10px;
+}
+
+.form-controls-section, .controlsSettingsSection {
+  height: calc(100vh - 100px);
+  overflow: auto;
+}

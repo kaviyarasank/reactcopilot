@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
-import LoginForm from '../LoginForm/LoginForm';
 import generateReactAppFiles from '../../generateReactAppFiles';
 import { appContext } from '../../App';
 
