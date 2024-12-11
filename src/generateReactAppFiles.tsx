@@ -7,16 +7,14 @@ const generateReactAppFiles = (props: any) => {
         <div
           key="${item.i}"
           data-grid={${JSON.stringify(item)}}
-          className="gridDIv position-relative"
+          className="gridDIv"
         >
-          <Chart
-            chartType="${item.type}"
-            data={getGraphData(${JSON.stringify(item.props)})}
-            options={{
-              title: "My Daily Activities",
-            }}
-            width={"100%"}
-          />
+          <ChartRenderer
+                          id={${item.i}}
+                          type={${JSON.stringify(item.type)}}
+                          item={${JSON.stringify(item)}}
+                        />
+
         </div>
       `;
     })
@@ -27,19 +25,9 @@ import React from "react";
 import Chart from "react-google-charts";
 import RGL, { WidthProvider } from "react-grid-layout";
 const ReactGridLayout = WidthProvider(RGL);
+import ChartRenderer from "./renderChart";
 
-const getGraphData = (item) =>{
 
-let temp = [
-              ["Task", "Hours per Day"],
-              ["Work", 9],
-              ["Eat", 2],
-              ["Commute", 2],
-              ["Watch TV", 2],
-              ["Sleep", 7],
-            ]
-  return temp;
-}
 
 const UserPreview = () => {
   return (
@@ -75,22 +63,33 @@ export default UserPreview;
           eject: "react-scripts eject",
         },
         dependencies: {
-          react: "^18.3.1",
+          'react': "^18.3.1",
           "react-dom": "^18.3.1",
           "react-scripts": "5.0.1",
           "react-google-charts": "^5.2.1",
           "react-grid-layout": "^1.5.0",
+          "react-dnd": "^16.0.1",
+          "react-dnd-html5-backend": "^16.0.1",
+          "react-redux": "^9.1.2",
+          "@reduxjs/toolkit": "^2.4.0",
         },
       },
       null,
       2
     ),
     "src/index.js": `
-        import React from 'react';
-        import ReactDOM from 'react-dom/client';
-        import App from './App';
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<React.StrictMode><App /></React.StrictMode>);
+       
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import { store } from './service/store';
+import { Provider } from 'react-redux';
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider></React.StrictMode>);
+
       `,
     "src/App.js": `
         import React from 'react';
@@ -100,6 +99,112 @@ export default UserPreview;
       `,
     "src/UserPreview.js": userPreviewCode,
     "src/UserPreview.css": userPreviewCSS,
+    "src/renderChart.js": `import React, { useEffect, useState } from "react";
+import Chart from "react-google-charts";
+import { useLazyGetReportsQuery } from "./service/reports";
+
+
+const ChartRenderer = ({ id, type,item }) => {
+  const [data, setData] = useState(null);
+  const [reports] = useLazyGetReportsQuery();
+  
+  useEffect(() => {
+    const fetchAndSetData = async () => {
+       await reports("")
+        .unwrap()
+        .then((res) => {
+            setData(res?.result)
+        })
+        .catch((err) => ({
+      
+        }))
+    };
+    fetchAndSetData();
+  }, [id]); 
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Chart
+      chartType={type}
+      data={data}
+      options={{
+        title: "My Dynamic Chart",
+      }}
+      width={"100%"}
+    />
+  );
+};
+export default ChartRenderer;`,
+
+    "src/service/baseQuery.js": `import {
+    FetchArgs,
+    createApi,
+    fetchBaseQuery,
+   FetchBaseQueryError, FetchBaseQueryMeta, BaseQueryFn
+  } from "@reduxjs/toolkit/query/react";
+  
+  const baseQuery = fetchBaseQuery({
+    baseUrl: 'http://192.168.1.37:3000/',
+      prepareHeaders: (headers, { getState }) => {
+        return headers;
+      },
+    })
+  
+  //used for token handle and common response and error
+  
+  const customFetchBaseQuery = async (args, api, extraOptions) => {
+    const result = await baseQuery(args, api, extraOptions);
+    console.log('result', result);
+    return result;
+  };
+  
+  
+  export const baseApi = createApi({
+    reducerPath: "baseApiReducer",
+    baseQuery: customFetchBaseQuery,
+    endpoints: () => ({}),
+    tagTypes: []
+  });
+  `,
+    "src/service/reports.js": `import { baseApi } from "./baseQuery";
+
+const reportsApi = baseApi.injectEndpoints({
+  endpoints: (build) => ({
+
+    getReports: build.query({
+      query: () => ({
+        url: 'api/report/view_report_chartdata?id=6752dfd0dc65436814c6e94f&query_id=67515b4dd846514814d3d934',
+        method: "GET"
+      }),
+    }),
+
+
+  }),
+});
+
+export const {
+  useLazyGetReportsQuery,
+} = reportsApi;
+`,
+    "src/service/store.js": `
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { baseApi } from './baseQuery';
+
+export const store = configureStore({
+  reducer: {
+    [baseApi.reducerPath]: baseApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
+})
+
+setupListeners(store.dispatch)
+
+`,
     "public/index.html": `
         <!DOCTYPE html>
         <html lang="en">

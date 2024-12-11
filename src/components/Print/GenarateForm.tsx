@@ -6,6 +6,8 @@ import DragFile from "./DragFile";
 import Chart from "react-google-charts";
 import { appContext } from "../../App";
 import { useLazyGetReportsQuery } from "../../service/reports";
+import renderChart from "./renderChart";
+import ChartRenderer from "./renderChart";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -107,6 +109,7 @@ function GenarateForm() {
     });
   }, [layout, reports]);
 
+
   useEffect(() => {
     if (layout?.length > 0) {
       fetchChartData();
@@ -129,55 +132,42 @@ function GenarateForm() {
     y = Math.floor(Math.min(12, Math.max(0, y)));
     setYposition(y)
   }
-  console.log("kkkkkkkkkkkkkkkkkkkk", xposition, yposition, layout);
 
   return (
     <div className="p-3">
       <div className="row mt-3">
         <div className="col-8 border containerSection" ref={dropRef}  >
           <div className="" ref={dropRef}>
-                <div className=" mt-2 p-2 " style={{ minHeight: 200, background: "#FFFFFF", borderRadius: "4px" }}>
-                  <div  onDragOver={(e) => dragOver(e)} className="section dot">
-                    <ReactGridLayout
-                      className="layout"
-                      layout={layout}
-                      cols={12}
-                      rowHeight={100}
-                      onLayoutChange={(data) => changeLayout(data)}
-                      isResizable={true}
-                      isDraggable={true}
+            <div className=" mt-2 p-2 " style={{ minHeight: 200, background: "#FFFFFF", borderRadius: "4px" }}>
+              <div onDragOver={(e) => dragOver(e)} className="section dot">
+                <ReactGridLayout
+                  className="layout"
+                  layout={layout}
+                  cols={12}
+                  rowHeight={100}
+                  onLayoutChange={(data) => changeLayout(data)}
+                  isResizable={true}
+                  isDraggable={true}
+                >
+                  {layout?.map((item: any) => (
+                    <div
+                      key={item?.i}
+                      data-grid={item}
+                      className="resize-grid-bg"
+                      onClick={() => gridClickFn(item.i)}
                     >
-                      {layout?.map((item: any, i: number) => (
-                        <div
-                          key={item?.i}
-                          data-grid={item}
-                          className="resize-grid-bg"
-                          onClick={() => gridClickFn(i)}
-                        >
-                          <div className="full-height">
-                            <Chart
-                              chartType={item?.type}
-                              data={[
-                                ["Task", "Hours per Day"],
-                                ["Work", 9],
-                                ["Eat", 2],
-                                ["Commute", 2],
-                                ["Watch TV", 2],
-                                ["Sleep", 7],
-                              ]}
-                              // data={chartData[item.i] || []} // Use specific chart data
-                              options={{
-                                title: "My Daily Activities",
-                              }}
-                              width={"100%"}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </ReactGridLayout>
-                  </div>
-                  <br />
-                </div>
+                      <div className="full-height">
+                        <ChartRenderer
+                          id={item.i}
+                          type={item.type}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </ReactGridLayout>
+              </div>
+              <br />
+            </div>
           </div>
         </div>
 
