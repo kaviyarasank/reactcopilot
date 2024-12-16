@@ -11,7 +11,7 @@ import {
   }
   
   const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://192.168.1.37:3000/',
+    baseUrl: 'http://15.206.125.185:3000/',
       prepareHeaders: (headers, { getState }:any) => {
         return headers;
       },

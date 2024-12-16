@@ -19,11 +19,11 @@ const ExportButton = ({layout}) => {
     //  zip.file(path, content);
     // Generate and save the zip file
     zip.generateAsync({ type: 'blob' }).then((blob) => {
-      saveAs(blob, 'login-form.zip');
+      saveAs(blob, 'copilot.zip');
     });
   };
 
-  return <button onClick={exportAsZip}>Export Login Form</button>;
+  return <button onClick={exportAsZip}>Export Project </button>
 };
 
 export default ExportButton;

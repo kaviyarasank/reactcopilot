@@ -184,7 +184,7 @@ function GenarateForm() {
         </div>
       </div>
 
-      <div className="d-flex gap-3">
+      {/* <div className="d-flex gap-3">
         <button onClick={SaveForm} className="backBtn mt-3">
           Submit
         </button>
@@ -197,7 +197,7 @@ function GenarateForm() {
         >
           Preview
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -36,9 +36,9 @@ const UserPreview = () => {
         className="layout mx-auto bg-white border"
         cols={12}
         rowHeight={50}
-        isResizable={true}
-        isDraggable={true}
-        allowOverlap={true}
+        isResizable={false}
+        isDraggable={false}
+        allowOverlap={false}
       >
         ${chartComponents}
       </ReactGridLayout>
@@ -147,7 +147,7 @@ export default ChartRenderer;`,
   } from "@reduxjs/toolkit/query/react";
   
   const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://192.168.1.37:3000/',
+    baseUrl: 'http://15.206.125.185:3000/',
       prepareHeaders: (headers, { getState }) => {
         return headers;
       },
@@ -176,7 +176,7 @@ const reportsApi = baseApi.injectEndpoints({
 
     getReports: build.query({
       query: () => ({
-        url: 'api/report/view_report_chartdata?id=6752dfd0dc65436814c6e94f&query_id=67515b4dd846514814d3d934',
+        url: 'api/report/view_report_chartdata?id=675ff9f45bff99d1dfbf4ec1&query_id=675ff98b5bff99d1dfbf4eaf&connection_id=675fe1835bff99d1dfbf4e59',
         method: "GET"
       }),
     }),

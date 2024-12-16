@@ -21,7 +21,10 @@ const App = () => {
       updateLayout
     }}>
     <div className="App">
-      <h1>React Project Exporter</h1>
+    <div style={{ display:"flex",justifyContent:"space-between" }}>
+      <h1>Project Exporter</h1>
+        <ExportButton layout={layout}/>
+        </div>
       <div className="container-fluid bg-white">
             <DndProvider backend={HTML5Backend}>
                 <GenarateForm />
@@ -29,9 +32,7 @@ const App = () => {
         </div>
         {/* <UserPreview/> */}
       {/* <LoginForm /> */}
-      <div style={{ marginTop: 10 }}>
-        <ExportButton layout={layout}/>
-        </div>
+   
     </div>
         </appContext.Provider>
   );
